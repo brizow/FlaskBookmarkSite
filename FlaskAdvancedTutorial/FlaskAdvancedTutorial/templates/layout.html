@@ -23,11 +23,23 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url_for('home') }}">Home</a></li>
-                    <li><a href="{{ url_for('about') }}">About</a></li>
+                    <li><a href="{{ url_for('add') }}">Add URL</a></li>
                     <li><a href="{{ url_for('contact') }}">Contact</a></li>
                 </ul>
             </div>
         </div>
+        <!--this section is a house for the flash message content. get_flashed_messages is python class call from flash -->
+       <article class="text text-info">
+           {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+           {% endif %}
+          {% endwith %}
+       </article>
     </div>
 
     <div class="container body-content">

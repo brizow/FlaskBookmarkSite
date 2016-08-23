@@ -18,7 +18,7 @@
     <PythonWsgiHandler>$(MSBuildProjectName).app</PythonWsgiHandler>
     <Name>FlaskAdvancedTutorial</Name>
     <RootNamespace>FlaskAdvancedTutorial</RootNamespace>
-    <InterpreterId>{1e91c8a5-d400-4f4b-96ba-8b5b9474ea59}</InterpreterId>
+    <InterpreterId>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</InterpreterId>
     <InterpreterVersion>2.7</InterpreterVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -30,6 +30,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="FlaskAdvancedTutorial\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="runserver.py" />
     <Compile Include="FlaskAdvancedTutorial\__init__.py" />
     <Compile Include="FlaskAdvancedTutorial\views.py" />
@@ -43,6 +46,8 @@
     <Folder Include="FlaskAdvancedTutorial\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FlaskAdvancedTutorial\templates\add.html" />
+    <Content Include="FlaskAdvancedTutorial\templates\form_macros.html" />
     <Content Include="requirements.txt" />
     <Content Include="FlaskAdvancedTutorial\static\content\bootstrap.css" />
     <Content Include="FlaskAdvancedTutorial\static\content\bootstrap.min.css" />
@@ -72,17 +77,7 @@
     <Content Include="FlaskAdvancedTutorial\templates\layout.html" />
   </ItemGroup>
   <ItemGroup>
-    <Interpreter Include="env2.7flask\">
-      <Id>{1e91c8a5-d400-4f4b-96ba-8b5b9474ea59}</Id>
-      <BaseInterpreter>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</BaseInterpreter>
-      <Version>2.7</Version>
-      <Description>env2.7flask (Python 2.7)</Description>
-      <InterpreterPath>Scripts\python.exe</InterpreterPath>
-      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
-      <LibraryPath>Lib\</LibraryPath>
-      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
-      <Architecture>X86</Architecture>
-    </Interpreter>
+    <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\2.7" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
   <!-- Specify pre- and post-build commands in the BeforeBuild and 

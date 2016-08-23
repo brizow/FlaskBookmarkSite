@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+<!--pull in the macro form so we can use render_form below-->
+{% from "form_macros.html" import render_field %}
+
+{% block content %}
+<body>
+    <section>
+        <h1>Add a new URL</h1>
+        <form method="post">
+            {{form.hidden_tag()}} <!--protects against CSRF, always use when using WTF forms-->
+            <table>
+                {{ render_field(form.url, size=50) }}
+                {{ render_field(form.description, size=50) }}
+                <tr>
+                   <td></td>
+                    <td><button type="submit"> Submit</button></td>
+                </tr>
+            </table>
+        </form>
+    </section>
+</body>
+
+{% endblock %}
+
+
+<!--   What we had to do before we used form_macros to build our fields.
+                 <tr {% if form.url.errors %} class="text text-warning" {% endif %}>
+                    <td>Please imput your bookmark here:</td>
+                    <td>{{form.url(size = 50)}}</td>
+                </tr>
+                <tr class="text text-warning">
+                <td></td>
+                <td>
+                    <ul>
+                        {% for error in form.url.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                </tr>
+                <tr>
+                    <td>Add an option description:</td>
+                    <td>{{form.description(size = 50)}}</td>
+                </tr>-->

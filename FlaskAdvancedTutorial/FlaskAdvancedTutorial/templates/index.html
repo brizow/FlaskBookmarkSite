@@ -3,10 +3,26 @@
 {% block content %}
 
 <div class="jumbotron">
-    <h1>Flask</h1>
-    <p class="lead">Flask is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://flask.pocoo.org/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+    <h1>Welcome</h1>
+    <p class="lead">This is a demo bookmark site made with Flask.</p>
+    <p>&nbsp;</p>
 </div>
+
+<section>
+    <article>
+        <h2>Recently Added</h2>
+        {% if new_bookmarks %}
+        <ul>
+            {% for bm in new_bookmarks %}
+                <li>{{bm.user}} added <a href="{{bm.url}}">{{bm.url}}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            No Bookmarks yet.
+        {% endif %}
+    </article>
+</section>
+
 
 <div class="row">
     <div class="col-md-4">
