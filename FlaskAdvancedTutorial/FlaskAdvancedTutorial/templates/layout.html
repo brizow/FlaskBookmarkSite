@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} - My Flask Application</title>
+    <title>{{ title }} - Flask Application</title>
     <link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
     <script src="/static/scripts/modernizr-2.6.2.js"></script>
@@ -18,18 +18,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/" class="navbar-brand">Application name</a>
+                <a href="/" class="navbar-brand">{{ title }}</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url_for('home') }}">Home</a></li>
                     <li><a href="{{ url_for('add') }}">Add URL</a></li>
-                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
                 </ul>
             </div>
         </div>
         <!--this section is a house for the flash message content. get_flashed_messages is python class call from flash -->
-       <article class="text text-info">
+       <div class="container text text-info">
            {% with messages = get_flashed_messages() %}
             {% if messages %}
             <ul>
@@ -39,14 +38,14 @@
             </ul>
            {% endif %}
           {% endwith %}
-       </article>
+       </div>
     </div>
 
     <div class="container body-content">
         {% block content %}{% endblock %}
         <hr />
         <footer>
-            <p>&copy; {{ year }} - My Flask Application</p>
+            <p>&copy; {{ year }} - {{ title }}</p>
         </footer>
     </div>
 

@@ -1,6 +1,3 @@
-"""
-Routes and views for the flask application.
-"""
 import os
 from datetime import datetime
 #request allows us to use if request.method == "POST" because it is bound to a view
@@ -9,12 +6,14 @@ from flask import render_template, url_for, Flask, request, redirect, flash
 
 #import our form class
 from forms import BookmarkForm
-
+#import our main app 
 from FlaskAdvancedTutorial import app
 
-
+#import our base path for sqllite
+basedir = os.path.abspath(os.path.dirname(__name__))
 #setup the secret session key. Not sure this is the preferred way.
 app.secret_key = '\x1f\x9b\xfb\x83"n\x16\xf5y\xc5{\xf6i\xd1\xb0\x81h_p\xd6e\xa0\xea'
+
 #creating a global list for now. Not recommended because multiple connections using the same global is asking for trouble.
 #we will learn about databasing next module.
 bookmarks = []
@@ -37,7 +36,7 @@ def home():
     """Renders the home page."""
     return render_template(
         'index.html',
-        title='Home Page',
+        title='Bookmark Saver',
         year=datetime.now().year,
         new_bookmarks = new_bookmarks(5)
     )
@@ -62,28 +61,10 @@ def add():
     #    return redirect(url_for("home"))
 
     #if there are error just rerender the form again
-    return render_template("add.html", form=form)
-
-@app.route('/contact')
-def contact():
-    """Renders the contact page."""
-    return render_template(
-        'contact.html',
-        title='Contact',
-        year=datetime.now().year,
-        message='Your contact page.'
-    )
-
-@app.route('/about')
-def about():
-    """Renders the about page."""
-    return render_template(
-        'about.html',
-        title='About',
-        year=datetime.now().year,
-        message='Your application description page.'
-    )
-
+    return render_template("add.html",  
+                           title='Bookmark Saver',
+                           year=datetime.now().year,
+                           form=form)
 
 
 def has_no_empty_params(rule):

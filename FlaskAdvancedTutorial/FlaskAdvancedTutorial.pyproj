@@ -33,6 +33,9 @@
     <Compile Include="FlaskAdvancedTutorial\forms.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FlaskAdvancedTutorial\models.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="runserver.py" />
     <Compile Include="FlaskAdvancedTutorial\__init__.py" />
     <Compile Include="FlaskAdvancedTutorial\views.py" />
@@ -71,8 +74,6 @@
     <Content Include="FlaskAdvancedTutorial\static\scripts\respond.js" />
     <Content Include="FlaskAdvancedTutorial\static\scripts\respond.min.js" />
     <Content Include="FlaskAdvancedTutorial\static\scripts\_references.js" />
-    <Content Include="FlaskAdvancedTutorial\templates\about.html" />
-    <Content Include="FlaskAdvancedTutorial\templates\contact.html" />
     <Content Include="FlaskAdvancedTutorial\templates\index.html" />
     <Content Include="FlaskAdvancedTutorial\templates\layout.html" />
   </ItemGroup>
