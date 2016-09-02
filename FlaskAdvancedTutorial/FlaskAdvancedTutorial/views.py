@@ -6,30 +6,21 @@ from datetime import datetime
 #request allows us to use if request.method == "POST" because it is bound to a view
 #flash allows us to use session messages. However we will need to set a secret key.
 from flask import render_template, url_for, Flask, request, redirect, flash
-
 #import our form class
 from forms import BookmarkForm
+#import our model class
+import models
 
-from FlaskAdvancedTutorial import app
-
-#import our base path for sqllite
-basedir = os.path.abspath(os.path.dirname(__name__))
+#import our base path for postgres
+#basedir = os.path.abspath(os.path.dirname(__file__))
 #setup the secret session key. Not sure this is the preferred way.
 app.secret_key = '\x1f\x9b\xfb\x83"n\x16\xf5y\xc5{\xf6i\xd1\xb0\x81h_p\xd6e\xa0\xea'
-#creating a global list for now. Not recommended because multiple connections using the same global is asking for trouble.
-#we will learn about databasing next module.
-bookmarks = []
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://user:user123@localhost/fat"
+#"postgresql://" + os.path.join(basedir, "fat.db")
 
-def store_bookmark(url, description):
-    bookmarks.append(dict(
-        url = url,
-        description = description,
-        user = "brett",
-        date = datetime.now()
-    ))
-
-def new_bookmarks(num):
-    return sorted(bookmarks, key=lambda bm: bm["date"], reverse=True)[:num]
+#Fake Login
+def logged_in_user():
+    return models.User.query.filter_by(username="admin").first()
 
 #/home view
 @app.route('/')
@@ -40,7 +31,7 @@ def home():
         'index.html',
         title='Bookmark Saver',
         year=datetime.now().year,
-        new_bookmarks = new_bookmarks(5))
+        new_bookmarks = models.Bookmark.newest(5))
 
 #/add view
 @app.route("/add", methods=["GET", "POST"])
@@ -51,11 +42,16 @@ def add():
         #otherwise lets add the data
         url = form.url.data
         description = form.description.data
-        store_bookmark(url, description)
+        #store the bookmak in the database
+        bm = models.Bookmark(user=logged_in_user(), url=url, description=description)
+        db.session.add(bm)
+        db.session.commit()
+        #let the user know all is well
         flash("Stored '{}'".format(description))
         return redirect(url_for("home"))
-        #if there are error just rerender the form again
-        return render_template("add.html",  
+
+    #if not validate on submit, show the new form.
+    return render_template("add.html",  
                            title='Bookmark Saver',
                            year=datetime.now().year,
                            form=form)

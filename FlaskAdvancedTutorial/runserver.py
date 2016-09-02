@@ -1,7 +1,6 @@
 """
 This script runs the FlaskAdvancedTutorial application using a development server.
 """
-
 from os import environ
 from FlaskAdvancedTutorial import app
 

@@ -5,8 +5,8 @@ from wtforms.validators import DataRequired, url
 
 class BookmarkForm(Form):
     #create fields with more readablility thanks to the jinja macro form
-    url = URLField("The URL for your bookmark:", validators=[DataRequired(), url()])
-    description = StringField("Add an optional description:")
+    url = URLField('Url: ', validators=[DataRequired(), url()])
+    description = StringField('Description: ')
 
     #"""This creates a user form for inputting data. This has two fields, url and description"""
     #url = URLField("url", validators=[DataRequired(), url()])
@@ -17,7 +17,7 @@ class BookmarkForm(Form):
     def validate(self):
         if not self.url.data.startswith("http://") or\
                self.url.data.startswith("https//"):
-                    self.url.data = "http://" + self.url.data
+                self.url.data = "http://" + self.url.data
 
         #calls the normal validate class on the parent form. Checks for all other errors.
         if not Form.validate(self):

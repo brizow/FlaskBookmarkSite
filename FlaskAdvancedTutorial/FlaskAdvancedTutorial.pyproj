@@ -30,7 +30,16 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="FlaskAdvancedTutorial\config.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="FlaskAdvancedTutorial\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskAdvancedTutorial\manage.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskAdvancedTutorial\models.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="runserver.py" />
