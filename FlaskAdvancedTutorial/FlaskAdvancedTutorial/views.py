@@ -2,21 +2,15 @@
 Routes and views for the flask application.
 """
 import os
+from config import app
 from datetime import datetime
 #request allows us to use if request.method == "POST" because it is bound to a view
 #flash allows us to use session messages. However we will need to set a secret key.
 from flask import render_template, url_for, Flask, request, redirect, flash
 #import our form class
 from forms import BookmarkForm
-#import our model class
-import models
-
-#import our base path for postgres
-#basedir = os.path.abspath(os.path.dirname(__file__))
-#setup the secret session key. Not sure this is the preferred way.
-app.secret_key = '\x1f\x9b\xfb\x83"n\x16\xf5y\xc5{\xf6i\xd1\xb0\x81h_p\xd6e\xa0\xea'
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://user:user123@localhost/fat"
-#"postgresql://" + os.path.join(basedir, "fat.db")
+#import the models
+from models import Bookmark, User
 
 #Fake Login
 def logged_in_user():
@@ -31,7 +25,7 @@ def home():
         'index.html',
         title='Bookmark Saver',
         year=datetime.now().year,
-        new_bookmarks = models.Bookmark.newest(5))
+        new_bookmarks = Bookmark.newest(5))
 
 #/add view
 @app.route("/add", methods=["GET", "POST"])
@@ -43,7 +37,7 @@ def add():
         url = form.url.data
         description = form.description.data
         #store the bookmak in the database
-        bm = models.Bookmark(user=logged_in_user(), url=url, description=description)
+        bm = Bookmark(user=logged_in_user(), url=url, description=description)
         db.session.add(bm)
         db.session.commit()
         #let the user know all is well
@@ -73,3 +67,6 @@ def site_map():
             url = url_for(rule.endpoint, **(rule.defaults or {}))
             links.append((url, rule.endpoint))
     # links is now a list of url, endpoint tuples
+
+
+#"postgresql://" + os.path.join(basedir, "fat.db")

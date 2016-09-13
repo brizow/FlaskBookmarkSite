@@ -1,10 +1,6 @@
 from datetime import datetime
 from sqlalchemy import desc
-from flask_sqlalchemy import SQLAlchemy
-from FlaskAdvancedTutorial import app
-
-#initialize the database object
-db = SQLAlchemy(app)
+from config import app, db
 
 #represents a table
 class Bookmark(db.Model):
