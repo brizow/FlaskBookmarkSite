@@ -52,7 +52,16 @@ def add():
                            year=datetime.now().year,
                            form=form)
 
+#/user/username
+@app.route("/user/<username>")
+def user(username):
+    #find the first username matching or return 404
+    user = User.query.filter_by(username=username).first_or_404()
+    return render_template("user.html", user=user)
 
+
+
+#some route playing a did
 def has_no_empty_params(rule):
     defaults = rule.defaults if rule.defaults is not None else ()
     arguments = rule.arguments if rule.arguments is not None else ()
@@ -68,7 +77,4 @@ def site_map():
         if "GET" in rule.methods and has_no_empty_params(rule):
             url = url_for(rule.endpoint, **(rule.defaults or {}))
             links.append((url, rule.endpoint))
-    # links is now a list of url, endpoint tuples
-
-
-#"postgresql://" + os.path.join(basedir, "fat.db")
+            # links is now a list of url, endpoint tuples
