@@ -2,7 +2,7 @@
 Routes and views for the flask application.
 """
 import os
-from config import app
+from config import app, db
 from datetime import datetime
 #request allows us to use if request.method == "POST" because it is bound to a view
 #flash allows us to use session messages. However we will need to set a secret key.
@@ -30,6 +30,7 @@ def home():
 #/add view
 @app.route("/add", methods=["GET", "POST"])
 def add():
+    #POST
     #we are using the form we created in forms.py
     form = BookmarkForm()
     if form.validate_on_submit(): #checks http form or validation errors
@@ -43,7 +44,8 @@ def add():
         #let the user know all is well
         flash("Stored '{}'".format(description))
         return redirect(url_for("home"))
-
+    
+    #GET
     #if not validate on submit, show the new form.
     return render_template("add.html",  
                            title='Bookmark Saver',
