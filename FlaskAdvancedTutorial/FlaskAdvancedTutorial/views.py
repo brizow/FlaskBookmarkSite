@@ -1,20 +1,26 @@
 """
 Routes and views for the flask application.
 """
+#system imports
 import os
 from config import app, db
 from datetime import datetime
 #request allows us to use if request.method == "POST" because it is bound to a view
 #flash allows us to use session messages. However we will need to set a secret key.
 from flask import render_template, url_for, Flask, request, redirect, flash
+#login stuff
+from flask_login import login_required, login_user
+
+#class imports
 #import our form class
-from forms import BookmarkForm
+from forms import BookmarkForm, LoginForm
 #import the models
 from models import Bookmark, User
 
-#Fake Login
+
+#Fake Login - return admin
 def logged_in_user():
-    return models.User.query.filter_by(username="admin").first()
+    return User.query.filter_by(username="admin").first()
 
 #/home view
 @app.route('/')
@@ -29,6 +35,7 @@ def home():
 
 #/add view
 @app.route("/add", methods=["GET", "POST"])
+@login_required
 def add():
     #POST
     #we are using the form we created in forms.py
@@ -57,9 +64,23 @@ def add():
 def user(username):
     #find the first username matching or return 404
     user = User.query.filter_by(username=username).first_or_404()
-    return render_template("user.html", user=user)
+    return render_template("user.html", user=user, 
+                           title = "Bookmarks for user " + user, 
+                           year=datetime.now().year)
 
 
+#/login
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user is not None:
+            login_user(user, form.remember_me.data)
+            flash("Loggin in successfully as {}.".format(user.username))
+            return redirect(request.args.get("next") or url_for("index"))
+        flash("Incorrect username or password")
+    return render_template("login.html", form=form)
 
 #some route playing a did
 def has_no_empty_params(rule):

@@ -1,5 +1,5 @@
 from flask_wtf import Form
-from wtforms.fields import StringField
+from wtforms.fields import StringField, PasswordField, BooleanField, SubmitField
 from flask_wtf.html5 import URLField
 from wtforms.validators import DataRequired, url
 
@@ -8,12 +8,9 @@ class BookmarkForm(Form):
     url = URLField('Url: ', validators=[DataRequired(), url()])
     description = StringField('Description: ')
 
-    #"""This creates a user form for inputting data. This has two fields, url and description"""
-    #url = URLField("url", validators=[DataRequired(), url()])
-    #description = StringField("description")
-
     #overrides the default validator
     #if not http:// or https:// then add it to the data.
+    #doesn't seem to work on Chrome.
     def validate(self):
         if not self.url.data.startswith("http://") or\
                self.url.data.startswith("https//"):
@@ -30,6 +27,11 @@ class BookmarkForm(Form):
         #if everything checks out return true so the validator 
         #class knows things are good to go.
         return True
-                                    
 
+#Login form class                                    
+class LoginForm(Form):
+    username = StringField("Your Username:", validators=[DataRequired()])
+    password = PasswordField("Password:", validators=[DataRequired()])
+    remember_me = BooleanField("Keep me logged in.")
+    submit = SubmitField("Log In")
 

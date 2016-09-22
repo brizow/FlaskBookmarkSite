@@ -2,6 +2,8 @@ from os import environ
 from config import app, db
 from models import User
 from flask_script import Manager, prompt_bool, Server
+from flask_login import LoginManager
+
 
 manager = Manager(app)
 #add specifics to the manager.py for autostart
@@ -24,6 +26,11 @@ def dropdb():
         "Are you sure you want to lose all your data?"):
             db.drop_all()
             print "Dropped the database successfully."
+
+#configure authentication
+login_manager = LoginManager()
+login_manager.session_protection = "strong"
+login_manager.init_app(app)
 
 #load the models and the views otherwise, the server has
 #no idea you have any routes.
