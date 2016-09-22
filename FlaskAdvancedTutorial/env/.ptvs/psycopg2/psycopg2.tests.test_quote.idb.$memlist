@@ -1,8 +1,0 @@
-TestQuotedString
-psycopg2
-QuotingTestCase
-test_suite
-ConnectingTestCase
-b
-sys
-unittest

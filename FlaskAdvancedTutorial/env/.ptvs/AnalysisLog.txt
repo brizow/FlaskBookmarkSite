@@ -2028,3 +2028,42 @@ C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Micro
 2016-09-15T10:20:19: Getting builtin names
 2016-09-15T10:20:19: Command D:\Sites\FlaskAdvancedTutorial\FlaskAdvancedTutorial\env\Scripts\python.exe -E -S -c "import sys; print('\n'.join(sys.builtin_module_names))"
 2016-09-15T10:20:19: Deleting 0 files
+
+2016-09-16T09:14:55: Start analysis
+2016-09-16T09:14:55: [WARNING] Library was set explicitly - skipping path detection
+2016-09-16T09:14:55: IncludeModulesFromModulePath = win32com
+2016-09-16T09:14:55: Deleting 978 files
+2016-09-16T09:14:56: Scraping builtin modules
+2016-09-16T09:14:56: Command: D:\Sites\FlaskAdvancedTutorial\FlaskAdvancedTutorial\env\Scripts\python.exe "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\Python Tools for Visual Studio\2.2\PythonScraper.py" D:\Sites\FlaskAdvancedTutorial\FlaskAdvancedTutorial\env\.ptvs\ "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\Python Tools for Visual Studio\2.2\CompletionDB\\"
+2016-09-16T09:14:56: [ERROR] Failed to scrape builtin modules (Exit Code: -1073741515)
+2016-09-16T09:14:56: [ERROR] Analysis failed
+System.InvalidOperationException: Failed to scrape builtin modules
+   at Microsoft.PythonTools.Analysis.PyLibAnalyzer.<Scrape>d__53.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.PythonTools.Analysis.PyLibAnalyzer.<RunWorker>d__31.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.PythonTools.Analysis.PyLibAnalyzer.<Run>d__30.MoveNext()
+
+2016-09-16T09:15:08: Start analysis
+2016-09-16T09:15:08: [WARNING] Library was set explicitly - skipping path detection
+2016-09-16T09:15:08: IncludeModulesFromModulePath = win32com
+2016-09-16T09:15:08: Deleting 1 files
+2016-09-16T09:15:08: Deleting "D:\Sites\FlaskAdvancedTutorial\FlaskAdvancedTutorial\env\.ptvs\__builtin__.idb"
+2016-09-16T09:15:08: Scraping builtin modules
+2016-09-16T09:15:08: Command: D:\Sites\FlaskAdvancedTutorial\FlaskAdvancedTutorial\env\Scripts\python.exe "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\Python Tools for Visual Studio\2.2\PythonScraper.py" D:\Sites\FlaskAdvancedTutorial\FlaskAdvancedTutorial\env\.ptvs\ "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\Python Tools for Visual Studio\2.2\CompletionDB\\"
+2016-09-16T09:15:08: [ERROR] Failed to scrape builtin modules (Exit Code: -1073741515)
+2016-09-16T09:15:08: [ERROR] Analysis failed
+System.InvalidOperationException: Failed to scrape builtin modules
+   at Microsoft.PythonTools.Analysis.PyLibAnalyzer.<Scrape>d__53.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.PythonTools.Analysis.PyLibAnalyzer.<RunWorker>d__31.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.PythonTools.Analysis.PyLibAnalyzer.<Run>d__30.MoveNext()
