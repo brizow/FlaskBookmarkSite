@@ -1,7 +1,7 @@
 from flask_wtf import Form
 from wtforms.fields import StringField, PasswordField, BooleanField, SubmitField
 from flask_wtf.html5 import URLField
-from wtforms.validators import DataRequired, url
+from wtforms.validators import DataRequired, url, Length, Email, Regexp, EqualTo, ValidationError
 
 class BookmarkForm(Form):
     #create fields with more readablility thanks to the jinja macro form
@@ -34,4 +34,26 @@ class LoginForm(Form):
     password = PasswordField("Password:", validators=[DataRequired()])
     remember_me = BooleanField("Keep me logged in.")
     submit = SubmitField("Log In")
+
+#Signup form class
+class SignupForm(Form):
+    username = StringField("Username:", validators=[DataRequired(), Length(3, 80), 
+                                                    Regexp("^[A-Za-z0-9_]{3,}$",
+                                                           message="Usernames consist of numbers, letters, and underscores.")])
+    password = PasswordField("Password", validators=[DataRequired(), EqualTo("password2", message="Passwords must match.")])
+    password2 = PasswordField("Confirm Password.", validators=[DataRequired()])
+    email = StringField("Email", validators=[DataRequired(), Length(1, 120), Email()])
+
+#check against database to see if there is already an email address created
+def validate_email(self, email_field):
+    if User.query.filter_by(email=email_field.data).first():
+        raise ValidationError("There is already a user with this email address.")
+
+#check to see if the username has already been used
+def validate_username(self, username_field):
+    if User.query.filter_by(username=username_field.data).first():
+        raise ValidationError("That username is already taken.")
+
+
+
 

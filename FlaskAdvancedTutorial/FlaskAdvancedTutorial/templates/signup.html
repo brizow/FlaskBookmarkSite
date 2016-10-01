@@ -9,9 +9,14 @@
             {{form.hidden_tag()}}
             <table>
                 {{ render_field(form.username, size = 50) }}
+                {{ render_field(form.email, size = 50) }}
                 {{ render_field(form.password, size = 50) }}
-                {{ render_field(form.remember_me) }}
-                {{ render_field(form.submit) }}
+                {{ render_field(form.password2, size = 50) }}
+
+                <tr class="submit">
+                    <td></td>
+                    <td><button type="submit">Submit</button></td>
+                </tr>
             </table>
         </form>
     </section>

@@ -59,6 +59,7 @@
     <Content Include="FlaskAdvancedTutorial\templates\add.html" />
     <Content Include="FlaskAdvancedTutorial\templates\form_macros.html" />
     <Content Include="FlaskAdvancedTutorial\templates\login.html" />
+    <Content Include="FlaskAdvancedTutorial\templates\signup.html" />
     <Content Include="FlaskAdvancedTutorial\templates\user.html" />
     <Content Include="requirements.txt" />
     <Content Include="FlaskAdvancedTutorial\static\content\bootstrap.css" />

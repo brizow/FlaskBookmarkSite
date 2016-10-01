@@ -2,8 +2,6 @@ from os import environ
 from config import app, db
 from models import User
 from flask_script import Manager, prompt_bool, Server
-from flask_login import LoginManager
-
 
 manager = Manager(app)
 #add specifics to the manager.py for autostart
@@ -15,8 +13,8 @@ manager.add_command("runserver", Server(host="localhost", port="8080"))
 def initdb():
     db.create_all()
     #manually add toplevel users
-    db.session.add(User(username="admin", email="admin@example.com"))
-    db.session.add(User(username="user", email="user@example.com"))
+    db.session.add(User(username="admin", email="admin@example.com", password="test"))
+    db.session.add(User(username="user", email="user@example.com", password="test"))
     db.session.commit()
     print "Initialized the database."
 
@@ -26,11 +24,6 @@ def dropdb():
         "Are you sure you want to lose all your data?"):
             db.drop_all()
             print "Dropped the database successfully."
-
-#configure authentication
-login_manager = LoginManager()
-login_manager.session_protection = "strong"
-login_manager.init_app(app)
 
 #load the models and the views otherwise, the server has
 #no idea you have any routes.
