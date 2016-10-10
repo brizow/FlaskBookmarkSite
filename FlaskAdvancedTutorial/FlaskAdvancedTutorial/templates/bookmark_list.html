@@ -1,0 +1,8 @@
+<!-- Partial HTML for displaying bookmark data in an unordered list -->
+<ul class="bookmarks">
+    {% for bookmark in bookmarks %}
+        <li>
+           {% include "bookmark.html" %}
+        </li>
+    {% endfor %}
+</ul>

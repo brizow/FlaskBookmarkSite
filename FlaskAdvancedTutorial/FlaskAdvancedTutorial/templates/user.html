@@ -4,17 +4,15 @@
     <article>
         <header>
             <h1>Bookmarks for {{user.username }}</h1>
-
-            <ul>
-                {% for bm in user.bookmarks %}
-                    <li>
-                        <a href="{{ bm.url }}">{{ bm.description }}</a>
-                        <span class="timestamp"> Added at {{ bm.date }}</span>
-                    </li>
+                {% if user.bookmarks.count() > 0 %}
+                <!-- Use our bookmark list partial to display them using Jinja with method -->
+                    {% with bookmarks=user.bookmarks %}
+                        <!-- Jinja include method -->
+                        {% include "bookmark_list.html" %}
+                    {% endwith %}
                 {% else %}
-                    <li>This user has not added any bookmarks yet.</li>
-                {% endfor %}
-            </ul>
+                    This user has not added any bookmarks.
+                {% endif %}
         </header>
     </article>
 {% endblock %}

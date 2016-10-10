@@ -5,12 +5,13 @@ from wtforms.validators import DataRequired, url, Length, Email, Regexp, EqualTo
 
 class BookmarkForm(Form):
     #create fields with more readablility thanks to the jinja macro form
-    url = URLField('Url: ', validators=[DataRequired(), url()])
-    description = StringField('Description: ')
-
+    url = URLField("Url: ", validators=[DataRequired(), url()])
+    description = StringField("Description: ")
+    tags = StringField("Tags: ", validators=[Regexp(r"^[a-zA-Z0-9, ]*$", message="Tags may only contain letters and numbers")])
+    
     #overrides the default validator
     #if not http:// or https:// then add it to the data.
-    #doesn't seem to work on Chrome.
+    #doesn't seem to work in Chrome.
     def validate(self):
         if not self.url.data.startswith("http://") or\
                self.url.data.startswith("https//"):
@@ -24,6 +25,16 @@ class BookmarkForm(Form):
         if not self.description.data:
             self.description.data = self.url.data
         
+        #filter out empty or duplicate tag names
+        #we are expecting a list of tags seperated by commas
+        #split at each comma, remove white space
+        stripped = [t.strip() for t in self.tags.data.split(",")]
+        #remove empty strings, put in set so it removes dups
+        not_empty = [tag for tag in stripped if tag]
+        tagset = set(not_empty)
+        #put what is left, cleaned up, and put it back in comma seperated values
+        self.tags.data = ",".join(tagset)
+
         #if everything checks out return true so the validator 
         #class knows things are good to go.
         return True

@@ -4,11 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }} - Flask Application</title>
+    {% block styles %}
     <link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
+    {% endblock %}
     <script src="/static/scripts/modernizr-2.6.2.js"></script>
 </head>
-
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -55,6 +56,7 @@
     </div>
 
     <div class="container body-content">
+        <br />
         {% block content %}{% endblock %}
         <hr />
         <footer>
@@ -62,10 +64,20 @@
         </footer>
     </div>
 
-    <script src="/static/scripts/jquery-1.10.2.js"></script>
+    <aside class="container">
+        <h3>Tags</h3>
+        {% for t in all_tags() %}
+            <a href="{{ url_for("tag", name=t) }}">{{ t }}</a>
+        {% endfor %}
+    </aside>
+
+    <!-- Top level call in for moment -->
+    {{ moment.include_jquery() }}
+    {{ moment.include_moment() }}
     <script src="/static/scripts/bootstrap.js"></script>
     <script src="/static/scripts/respond.js"></script>
-    {% block scripts %}{% endblock %}
+    {% block scripts %}
+    {% endblock %}
 
 </body>
 </html>

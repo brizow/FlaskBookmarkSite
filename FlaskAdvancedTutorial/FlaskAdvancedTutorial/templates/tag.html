@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <article>
+        <header>
+            <h1>Bookmarks tagged {{ tag }}</h1>
+                {% if tag.bookmarks.count() > 0 %}
+                <!-- Use our bookmark list partial to display them using Jinja with method -->
+                    {% with bookmarks=tag.bookmarks %}
+                        <!-- Jinja include method -->
+                        {% include "bookmark_list.html" %}
+                    {% endwith %}
+                {% else %}
+                    There are no bookmarks with this tag.
+                {% endif %}
+        </header>
+    </article>
+{% endblock %}

@@ -1,0 +1,44 @@
+<!-- Partial html for the Add/Edit form -->
+{% extends "layout.html" %}
+<!--pull in the macro form so we can use render_form below-->
+{% from "form_macros.html" import render_field %}
+
+<!-- we are adding another stylesheet to the base template with the super() command -->
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for("static", filename="content/select2.css") }}" />
+{% endblock %}
+
+{% block content %}
+    <section>
+        <h1>{{title}}</h1>
+        <form method="post">
+            {{form.hidden_tag()}} <!--protects against CSRF, always use when using WTF forms-->
+            <table>
+                {{ render_field(form.url, size=50) }}
+                {{ render_field(form.description, size=50) }}
+                <!-- looks up tags via their name using the id="tags" -->
+                {{ render_field(form.tags, size=50, id="tags") }}
+                <tr>
+                   <td></td>
+                    <td><button type="submit"> Submit</button></td>
+                </tr>
+            </table>
+        </form>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for("static", filename="scripts/select2.min.js") }}"></script>
+<script>
+<!-- initalize and user the select2 js -->
+$(document).ready(function(){
+    //     Jinja template calls the all_tags method from the sever, gets all the tags,
+    //     and converts them json for the js, safe means we trust this expression. 
+    //     without safe this would fail.
+    var _tags = {{ all_tags()|map(attribute="name")|list|tojson|safe }};
+    //     get all the tags, dicitionary of tags, convert tags with seperators automatically
+    $("#tags").select2({tags: _tags, tokenSeparators: [",", " "]});
+    });
+</script>
+{% endblock %}

@@ -56,10 +56,17 @@
     <Folder Include="FlaskAdvancedTutorial\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FlaskAdvancedTutorial\static\content\select2.css" />
+    <Content Include="FlaskAdvancedTutorial\static\scripts\select2.min.js" />
     <Content Include="FlaskAdvancedTutorial\templates\add.html" />
+    <Content Include="FlaskAdvancedTutorial\templates\bookmark.html" />
+    <Content Include="FlaskAdvancedTutorial\templates\bookmark_form.html" />
+    <Content Include="FlaskAdvancedTutorial\templates\bookmark_list.html" />
+    <Content Include="FlaskAdvancedTutorial\templates\confirm_delete.html" />
     <Content Include="FlaskAdvancedTutorial\templates\form_macros.html" />
     <Content Include="FlaskAdvancedTutorial\templates\login.html" />
     <Content Include="FlaskAdvancedTutorial\templates\signup.html" />
+    <Content Include="FlaskAdvancedTutorial\templates\tag.html" />
     <Content Include="FlaskAdvancedTutorial\templates\user.html" />
     <Content Include="requirements.txt" />
     <Content Include="FlaskAdvancedTutorial\static\content\bootstrap.css" />
