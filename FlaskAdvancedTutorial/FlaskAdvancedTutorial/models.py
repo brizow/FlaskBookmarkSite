@@ -21,7 +21,7 @@ class Bookmark(db.Model):
     #add relation to user table
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     #add attribute to tag class, _tags to make it apparent we don't want to access this from other classes
-    _tags = db.relationship("Tag", secondary=tags, backref=db.backref("bookmarks", lazy="dynamic"))
+    _tags = db.relationship("Tag", secondary=tags, lazy="joined", backref=db.backref("bookmarks", lazy="dynamic"))
 
     #static query method, used in the views page
     @staticmethod

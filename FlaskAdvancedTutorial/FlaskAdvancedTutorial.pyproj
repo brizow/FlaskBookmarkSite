@@ -7,7 +7,7 @@
     <ProjectGuid>13f96abb-7179-44a8-a39a-3c88ee3b4c18</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <ProjectTypeGuids>{789894c7-04a9-4a11-a6b5-3f4435165112};{1b580a1a-fdb3-4b32-83e1-6407eb2722e6};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
-    <StartupFile>FlaskAdvancedTutorial\manage.py</StartupFile>
+    <StartupFile>FlaskAdvancedTutorial\__init__.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -31,10 +31,25 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="FlaskAdvancedTutorial\auth\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskAdvancedTutorial\auth\views.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskAdvancedTutorial\auth\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskAdvancedTutorial\bookmarks\views.py" />
+    <Compile Include="FlaskAdvancedTutorial\bookmarks\__init__.py" />
     <Compile Include="FlaskAdvancedTutorial\config.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FlaskAdvancedTutorial\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FlaskAdvancedTutorial\main\views.py" />
+    <Compile Include="FlaskAdvancedTutorial\main\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FlaskAdvancedTutorial\manage.py">
@@ -44,10 +59,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FlaskAdvancedTutorial\__init__.py" />
-    <Compile Include="FlaskAdvancedTutorial\views.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FlaskAdvancedTutorial\" />
+    <Folder Include="FlaskAdvancedTutorial\auth\" />
+    <Folder Include="FlaskAdvancedTutorial\bookmarks\" />
+    <Folder Include="FlaskAdvancedTutorial\main\" />
     <Folder Include="FlaskAT\" />
     <Folder Include="FlaskAdvancedTutorial\static\" />
     <Folder Include="FlaskAdvancedTutorial\static\content\" />
